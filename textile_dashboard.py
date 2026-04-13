@@ -135,7 +135,7 @@ def build_data_summary(df: pd.DataFrame) -> str:
     staff_rev   = df.groupby("Staff")["Total Amount"].sum().sort_values(ascending=False)
 
     return f"""
-TEXTILE SHOP SALES DATA - March 2026 - Nagpur, India:
+TEXTILE SHOP SALES DATA - March 2026 - Pune, India:
 - Total Revenue: Rs.{total_rev:,.0f}
 - Total Bills: {total_bills}
 - Average Bill: Rs.{avg_bill:,.0f}
@@ -196,7 +196,7 @@ with st.sidebar:
     sel_pay = st.selectbox("Payment", ["All Payments"] + PAYMENTS)
     days    = ["All Days","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     sel_day = st.selectbox("Day", days)
-    st.caption("AI Dashboard by [Your Startup] · Nagpur")
+    st.caption("AI Dashboard by [Your Startup] · Pune")
 
 df = df_full.copy()
 if "All" not in sel_cat and sel_cat:
@@ -391,7 +391,7 @@ with tab1:
         if user_q.strip():
             with st.spinner("AI is reading your data..."):
                 prompt = f"""
-Here is the sales data for a textile shop in Nagpur, India:
+Here is the sales data for a textile shop in Pune, India:
 {DATA_SUMMARY}
 
 Owner's question: {user_q}
@@ -422,7 +422,7 @@ with tab2:
         "Loyalty customer thank you + offer",
     ])
     shop_name = st.text_input("Shop name:", value="Lakshmi Textile & Clothing")
-    shop_loc  = st.text_input("Location:", value="Sitabuldi, Nagpur")
+    shop_loc  = st.text_input("Location:", value="Sitabuldi, Pune")
     offer     = st.text_input("Offer:", value="20% off")
     phone     = st.text_input("Contact:", value="98XXXXXXXX")
 
@@ -460,11 +460,11 @@ with tab3:
     if st.button("Predict April 2026", type="primary", key="pred_btn"):
         with st.spinner("Predicting..."):
             prompt = f"""
-March 2026 textile shop data from Nagpur:
+March 2026 textile shop data from Pune:
 {DATA_SUMMARY}
 
 Predict April 2026. Consider:
-- April = summer starts in Nagpur (very hot)
+- April = summer starts in Pune (very hot)
 - Post-Holi — festive buying slows
 - Pre-wedding season begins in May
 - Cotton and light fabrics sell more in summer
@@ -506,7 +506,7 @@ Give 5 customer behaviour insights. For each:
 INSIGHT: [what the data shows]
 ACTION: [one specific thing owner should do]
 
-Number them 1 to 5. Be practical for a Nagpur textile shop.
+Number them 1 to 5. Be practical for a Pune textile shop.
 """
             insights = ask_ai(prompt)
         st.markdown('<div class="ai-box">', unsafe_allow_html=True)
@@ -544,7 +544,7 @@ SKIP / REDUCE (slow movers):
 NEW ITEM TO TRY (1-2 suggestions for April summer):
 
 Add suggested quantities. Owner will show this to supplier directly.
-April is summer in Nagpur — prefer light fabrics.
+April is summer in Meet — prefer light fabrics.
 """
             reorder = ask_ai(prompt)
         st.markdown('<div class="ai-box">', unsafe_allow_html=True)
@@ -559,4 +559,4 @@ April is summer in Nagpur — prefer light fabrics.
         )
 
 st.markdown("---")
-st.caption("Built by [Your Startup Name] · Nagpur · AI by Groq (FREE) · Data is private")
+st.caption("Built by [Meet] · Pune · AI by Groq (FREE) · Data is private")
